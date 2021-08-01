@@ -48,14 +48,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.product = product;
     })
   }
-  addToCartandCheckout(){
-    const cartItem: CartItem = {
-      product: this.product.id,
-      quantity: this.quantity
-    };
-    this.cartService.setCartItem(cartItem);
-    this.router.navigate(['/checkout']);
-  }
+
   addToCart(){
     const cartItem: CartItem = {
       product: this.product.id,
