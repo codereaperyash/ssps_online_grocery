@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartItem, CartService } from '@codereaper/orders';
 import { MessageService } from 'primeng/api';
 import { Subject } from 'rxjs';
@@ -27,7 +27,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private productService: ProductsService,
     private route: ActivatedRoute,
     private messageService: MessageService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -47,22 +48,22 @@ export class ProductPageComponent implements OnInit, OnDestroy {
       this.product = product;
     })
   }
+  addToCartandCheckout(){
+    const cartItem: CartItem = {
+      product: this.product.id,
+      quantity: this.quantity
+    };
+    this.cartService.setCartItem(cartItem);
+    this.router.navigate(['/checkout']);
+  }
   addToCart(){
-    if(this.product.availability){
-      const cartItem: CartItem = {
-        product: this.product.id,
-        quantity: this.quantity
-      };
-      this.cartService.setCartItem(cartItem);
-      this.showSuccess();
-    }else{
-      this.showFailure();
-    }
-    }
-
-    showFailure() {
-      this.messageService.add({severity:'success', summary: 'Oops!', detail: 'Item Out of Stock'});
-    }
+    const cartItem: CartItem = {
+      product: this.product.id,
+      quantity: this.quantity
+    };
+    this.cartService.setCartItem(cartItem);
+    this.showSuccess();
+  }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Hooray!', detail: 'Item added to cart :)'});
   }
