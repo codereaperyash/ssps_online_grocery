@@ -25,12 +25,6 @@
                                     </p-tag>
                                 </div>                             
                             </div>                                                            
-                            <div class="add-to-cart" *ngIf="product.availability">
-                                <button styleClass="mt-3 add-to-cart" pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" class="p-button-success"></button>
-                            </div>
-                            <div class="add-to-cart" *ngIf="!product.availability">
-                                <button styleClass="mt-3 add-to-cart" pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" class="p-button-danger"></button>
-                            </div>
                         </div>
                     </ng-template>
                 </p-dataView>
