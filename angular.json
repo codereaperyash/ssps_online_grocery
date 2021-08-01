@@ -209,8 +209,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "apps/sspsonlinegrocery/src/environments/environment.ts",
-                  "with": "apps/sspsonlinegrocery/src/environments/environment.prod.ts"
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
