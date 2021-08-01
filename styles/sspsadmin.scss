@@ -1,0 +1,27 @@
+//base
+@import '~normalize.css/normalize.css';
+@import './base/colors.scss';
+@import './base/fonts.scss';
+@import './base/mixins.scss';
+
+//importing bootstrap
+@import '~bootstrap/dist/css/bootstrap.css';
+
+//importing primeng
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/nova-accent/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.css';
+
+//declaring configuration
+@import './base/configurations.scss';
+
+//admin components
+@import './admin/shell.scss';
+@import './admin//dashboard.scss';
+
+//libs
+@import './libs/orders/orders.scss';
+@import './libs/products/products.scss';
+@import './libs/ui/ui.scss';
+@import './libs/users/users.scss';

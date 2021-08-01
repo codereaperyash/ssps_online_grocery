@@ -1,0 +1,40 @@
+//base
+@import '~normalize.css/normalize.css';
+@import './base/colors.scss';
+@import './base/fonts.scss';
+@import './base/mixins.scss';
+
+//importing bootstrap
+@import '~bootstrap/dist/css/bootstrap.css';
+
+//importing primeng
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/saga-blue/theme.css';
+@import '~primeng/resources/primeng.min.css';
+@import '~primeflex/primeflex.css';
+@import '~animate.css/animate.css';
+//declaring configuration
+@import './base/configurations.scss';
+
+//apps/pages
+@import './apps/pages/home-page.scss';
+@import './apps/pages/products-list-page.scss';
+
+//shared
+@import './apps/shared/footer.scss';
+@import './apps/shared/header.scss';
+@import './apps/shared/nav.scss';
+
+//libs
+@import './libs/orders/orders.scss';
+@import './libs/products/products.scss';
+@import './libs/ui/ui.scss';
+@import './libs/users/users.scss';
+
+.mainpage{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: var(--surface-200);
+    padding: 30px;
+}

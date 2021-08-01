@@ -1,0 +1,45 @@
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<div class="products-list">
+    <div class="grid">
+        <div class="col-2" *ngIf="!categoryButton">
+            <h4>Categories</h4><br>
+            <div class="p-field-checkbox mb-2" *ngFor="let category of categories">
+                <p-checkbox [(ngModel)]="category.checked" [binary]="true" [inputId]="category.id" (onChange)="categoryFilter()"></p-checkbox>
+                <label for="{{category.id}}">&nbsp;{{category.name}}</label>
+                <br>
+            </div>
+        </div>
+        <div [ngClass]="{'col-10' : !categoryButton, 'col-12': categoryButton}">
+            <div class="card">
+                <p-dataView #dv [value]="products" [paginator]="true" [rows]="10">
+                    <ng-template let-product pTemplate="listItem">
+                        <div class="col-12 animate__animated animate__fadeInDown">
+                            <div class="product-list-item">
+                                <img [src]="product.image" [routerLink]="'/products/'+ product.id"  [alt]="product.name"/>
+                                <div class="product-list-detail">
+                                    <div class="product-name">{{product.name}}</div>
+                                    <div class="product-description">{{product.brand}}</div>
+                                    <p-tag *ngIf="product.availability" value="available" severity="success"></p-tag>
+                                    <p-tag *ngIf="!product.availability" value="unavailable" severity="danger"></p-tag><br>
+                                    <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{product.category.name}}</span>
+                                </div>
+                                <div class="product-list-action">
+                                    <span class="product-mrp" style="text-decoration: line-through; margin-right: 10px;">INR&nbsp;{{product.mrp}}</span><br>
+                                    <span class="product-price" style="margin-right: 10px;">INR&nbsp;{{product.price}}</span><br>
+                                </div>
+                                <br>
+                                <div>
+                                    <p-tag value="{{((product.price/product.mrp)*100 - 100).toFixed(2)}}%" severity="success">
+                                    </p-tag>
+                                </div>                             
+                            </div>                                                            
+                            <div class="add-to-cart" *ngIf="product.availability">
+                                <button styleClass="mt-3 add-to-cart" pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" class="p-button-success" (click)="addToCart(product.id)"></button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-dataView>
+            </div>
+        </div>
+    </div>
+</div>

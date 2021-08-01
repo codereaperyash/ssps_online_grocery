@@ -1,0 +1,48 @@
+.product-page{
+    min-height: auto;
+    max-height: 1000px;
+    img{
+        width: 400px;
+        margin-left: 250px;
+        padding: 20px;
+    }
+    .product-info{
+        margin-top: 30px;
+        .name{
+            font-size: 2em;
+            font-weight: 700;
+        }
+        .rating{
+            margin: 15px 0;
+        }
+        .mrp{
+            font-size: 1.2em;
+            font-weight: 600;
+            padding: 10px 0;
+        }
+        .price{
+            font-size: 1.2em;
+            font-weight: 600;
+            color: green;
+            padding: 10px 0;
+            margin-bottom: 10px;  
+        }
+        .ditag{
+            font-size: 1em;
+            padding-bottom: 10px;
+        }
+        .quantity{
+            margin: 25px 0;
+            label{
+                font-size: 1.2em;
+            }
+            .p-button{
+                background-color: $primary-color;
+            }
+        }
+        .actions{
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+    }
+}

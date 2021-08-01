@@ -1,0 +1,24 @@
+<div class="order-summary">
+    <h4>Order Summary</h4>
+    <div class="summary-amt">
+        <span>Order Grand M.R.P</span>
+        <span>{{totalMrp | currency: 'INR '}}</span>
+    </div>
+    <div class="summary-amt">
+        <span>Shipping Charges</span>
+        <span class="free">Free</span>   
+    </div>
+    <div class="summary-discount">
+        <span>Grand Discount</span>
+        <span>{{((totalPrice/totalMrp)*100 - 100).toFixed(2)}}%</span>
+    </div>
+    <div class="to-checkout">
+        <div class="summary-final">
+            <span>Final Amount</span>
+            <span>{{totalPrice | currency: 'INR '}}</span>
+        </div>
+        <div class="checkout-button" *ngIf="!isCheckout">
+            <p-button label="Checkout" (onClick)="toCheckOutPage()"></p-button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editMode? 'Update Category': 'Create Category'" [subheader]="editMode? 'Update the existing Category' : 'Add a New Category'">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <p-button label="Cancel"
+                        icon="pi pi-chevron-left"
+                        styleClass="p-button-danger"
+                        (onClick) = "onCancel()">
+                    </p-button>
+                    </div>
+                    <div class="p-toolbar-group-right">
+                        <p-button [label]="editMode? 'Update' : 'Create'"
+                        icon="pi pi-check"
+                        styleClass="p-button-success"
+                        (onClick) = "onCreate()"
+                        ></p-button>
+                    </div>
+                </p-toolbar>
+                <br>
+                <div class="p-grid">
+                    <div class="p-col-4">
+                        <form [formGroup]="form">
+                             <div class="formgrid grid">
+                                    <div class="field col">
+                                        <label for="categoryname">Name of the Category</label>
+                                        <input formControlName="name" fid="categoryname" type="text" class="inputfield w-full">
+                                        <small *ngIf="categoryForm.name.invalid && isSubmitted" class="p-error">Name is required</small>
+                                    </div>
+                                    <div class="field col">
+                                        <label for="categoryicon">Icon for the category</label>
+                                        <input formControlName="icon" id="categoryicon" type="text" class="inputfield w-full">
+                                        <small *ngIf="categoryForm.icon.invalid && isSubmitted" class="p-error">Icon is required</small>
+                                    </div>
+                                    <div class="field col">
+                                        <label for="color">Color for the category</label>
+                                        <br />
+                                        <p-colorPicker formControlName="color"></p-colorPicker>
+                                    </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <form [formGroup]="form">
+                            <div class="p-fluid p-formgrid p-grid">
+                                <div class="p-field p-col-12">
+                                    <label for="image">Product Image Upload:</label>
+                                    <input type="file" accept="image/*" class="p-inputtext" (change)="onImageUpload($event)">
+                                    <small *ngIf="categoryForm.image.invalid && isSubmitted" class="p-error">Image is required</small>
+                                    <div class="p-col-2 mt-2 pl-0">
+                                        <img [src]="imageDisplay" style="width: 20%; height: 20%;" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </p-card>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

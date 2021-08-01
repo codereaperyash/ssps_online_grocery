@@ -1,0 +1,40 @@
+<div class="featured-products">
+    <h3 class="mt-3" style="color: var(--surface-700); font-weight: 400; margin-top: 10px;">Featured Products</h3>
+    <div class="grid">
+        <div class="col-12">
+            <div class="card">
+                <p-dataView #dv [value]="featuredProducts" [paginator]="true" [rows]="5">
+                    <ng-template let-product pTemplate="listItem">
+                        <div class="col-12 animate__animated animate__fadeInDown">
+                            <div class="product-list-item">
+                                <img [routerLink]="'products/' + product.id" [src]="product.image" [alt]="product.name"/>
+                                <div class="product-list-detail">
+                                    <div class="product-name">{{product.name}}</div>
+                                    <div class="product-description">{{product.brand}}</div>
+                                    <p-tag *ngIf="product.availability" value="available" severity="success"></p-tag>
+                                    <p-tag *ngIf="!product.availability" value="unavailable" severity="danger"></p-tag><br>
+                                    
+                                </div>
+                                <div class="product-list-action">
+                                    <span class="product-mrp" style="text-decoration: line-through; margin-right: 10px;">INR&nbsp;{{product.mrp}}</span><br>
+                                    <span class="product-price" style="margin-right: 10px;">INR&nbsp;{{product.price}}</span><br>
+                                </div>
+                                <br>
+                                <div>
+                                    <p-tag value="{{((product.price/product.mrp)*100 - 100).toFixed(2)}}%" severity="success">
+                                    </p-tag>
+                                </div>                             
+                            </div>                                                            
+                            <div class="add-to-cart" *ngIf="product.availability">
+                                <button styleClass="mt-3 add-to-cart" pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" class="p-button-success"></button>
+                            </div>
+                            <div class="add-to-cart" *ngIf="!product.availability">
+                                <button styleClass="mt-3 add-to-cart" pButton type="button" label="Add to Cart" icon="pi pi-shopping-cart" class="p-button-danger"></button>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-dataView>
+            </div>
+        </div>
+    </div>
+</div>

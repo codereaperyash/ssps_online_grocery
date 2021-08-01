@@ -1,0 +1,55 @@
+.admin {
+    &-wraper{
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+    &-sidebar{
+        width: 100%;
+        position:relative;
+        height: 150px;
+        top: 0;
+        .logo{
+            height: 100%;
+            img{
+                border-radius: 25%;
+                padding: 10px;
+                max-height: 100%;
+            }
+            ul{
+                margin-top: 50px;
+                display: inline;
+                position: relative;
+                width: 100%;
+                li{
+                    display: inline;
+                    list-style: none;
+                    a{
+                        font-size: x-large;
+                        left: 25px;
+                        position:relative;
+                        padding: 20px;
+                        color: snow;
+                        display: inline;
+                        width: 100%;
+                        &:hover{
+                            background-color: teal;
+                        }
+
+                    }
+                    }                   
+                }         
+        }       
+    }
+    &-main{
+        height: calc(100% - 150px);
+        margin-top: 150px;
+    }
+
+//design of admin-page
+        &-page{
+
+            padding: 20px;
+        }
+    
+}

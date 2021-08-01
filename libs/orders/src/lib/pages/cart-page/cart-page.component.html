@@ -1,0 +1,50 @@
+<p-toast></p-toast>
+<div class="cart-page">
+    <div class="grid">
+        <div class="col-8">
+            <div>
+                <p-button label="Continue Shopping" icon="pi pi-arrow-left" (onClick)="backToProducts()">
+                </p-button>
+            </div>
+            <div>
+                <h5 class="itemcount">Cart Item Count: {{cartCount}} Item(s)</h5>
+            </div>
+            <div class="instructions">One Day Delivery on Orders between 06:00 IST and 12:00 IST</div>
+            <div class="cart-item" *ngFor="let cartItem of cartItemDetailed">
+                <div class="grid fluid">
+                    <div class="col-2 cart-item-image">
+                        <img [src]="cartItem.product.image" [attr.alt]="cartItem.product.name">
+                    </div>
+                    <div class="col-7">
+                        <div class="cart-item-name">{{cartItem.product.name}}</div>
+                        <span>
+                            <div class="cart-item-mrp" style="text-decoration: line-through;">M.R.P:&nbsp;{{cartItem.product.mrp | currency: 'INR '}}</div>
+                        </span>
+                        <div class="cart-item-price">Price:&nbsp;{{cartItem.product.price | currency: 'INR '}}</div>
+                        <div class="cart-item-disc">
+                            <p-tag value="Discount:&nbsp;{{((cartItem.product.price/cartItem.product.mrp)*100 - 100).toFixed(2)}}%" severity="success">
+                            </p-tag>
+                        </div>
+                        <div class="cart-item-delete">
+                            <p-button icon="pi pi-trash" (onClick)="deleteItem(cartItem.product.id)"></p-button>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="cart-item-quantity">
+                            <label for="quantity">Quantity:&nbsp;</label>
+                            <p-inputNumber mode="decimal" [showButtons]="true" [inputId]="cartItem.product.id" [(ngModel)]="cartItem.quantity" [min]="1" [max]="100" (onInput)="updateCartItemQuantity($event, cartItem)">
+                            </p-inputNumber>
+                        </div>
+                        <div class="cart-item-subtotal">
+                            Subtotal:
+                            <span class="cart-item-subtotal-value">{{cartItem.product.price * cartItem.quantity | currency: 'INR '}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <orders-order-summary></orders-order-summary>
+        </div>
+    </div>
+</div>

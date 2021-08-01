@@ -1,0 +1,113 @@
+<p-toast></p-toast>
+<div class="admin-page" style="overflow: hidden;" *ngIf="orders">
+    <p-card header="Order Details" subheader="View the Order Details and Update the Order Status">
+            <p-fieldset styleClass="mb-4" legend="Order Details" [toggleable]="true">
+                <div class="formgrid grid">
+                    <div class="field col-4">
+                        <h5>Order ID</h5>
+                        <p>{{orders.id}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Ordered On</h5>
+                        <p>{{orders.dateOrdered | date:'short'}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Order Status</h5>
+                        <p-dropdown [options]="orderStatuses"
+                        [(ngModel)]="selectedStatus"
+                        editable="true"
+                        (onChange)="changeStatus($event)"
+                        optionLabel="name">
+
+                        </p-dropdown>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Total Price</h5>
+                        <p>{{orders.totalPrice | currency:'INR '}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Total M.R.P</h5>
+                        <p>{{orders.totalMrp | currency:'INR '}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Total Discount</h5>
+                        <p-tag styleClass="p-mr-2" severity="success" value="-{{orders.totalDiscount}}%"></p-tag>
+                    </div>
+                </div>
+            </p-fieldset>
+            <p-fieldset styleClass="mb-4" legend="Order Items" [toggleable]="true">
+                <p-table [value]="orders.orderItems" styleClass="p-datatable-gridlines">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th><h4>Product</h4></th>
+                            <th><h4>Brand</h4></th>
+                            <th><h4>M.R.P</h4></th>
+                            <th><h4>Price</h4></th>
+                            <th><h4>Quantity</h4></th>
+                            <th><h4>Discount</h4></th>
+                            <th><h4>Sub-Total</h4></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-orders>
+                        <tr>
+                            <td>{{orders.product.name}}</td>
+                            <td>{{orders.product.brand}}</td>
+                            <td>{{orders.product.mrp | currency: 'INR '}}</td>
+                            <td>{{orders.product.price | currency: 'INR '}}</td>
+                            <td>{{orders.quantity}}</td>
+                            <td><p-tag value="{{((orders.product.price/orders.product.mrp)*100 - 100).toFixed(2)}}%" severity="success">
+                            </p-tag></td>
+                            <td>{{orders.quantity * orders.product.price | currency: 'INR '}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between offset-9 text-2xl" style="color: green;">
+                            Total Price:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{orders.totalPrice | currency:'INR '}}
+                        </div>
+                    </ng-template>
+                </p-table> 
+            </p-fieldset>
+            <p-fieldset legend="Delivery Details" [toggleable]="true">
+                <div class="formgrid grid">
+                    <div class="field col-4">
+                        <h5>Customer ID</h5>
+                        <p>{{orders.user.id}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Name</h5>
+                        <p>{{orders.user.name}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Contact</h5>
+                        <p>{{orders.user.phone}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Email</h5>
+                        <p>{{orders.user.email}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Address Line 1</h5>
+                        <p>{{orders.deliveryAddress1}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Address Line 2</h5>
+                        <p>{{orders.deliveryAddress2}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer Locality</h5>
+                        <p>{{orders.user.locality}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Customer City</h5>
+                        <p>{{orders.user.city}}</p>
+                    </div>
+                    <div class="field col-4">
+                        <h5>Delivery Method:</h5>
+                        <p-tag *ngIf="orders.shopPickup" value="Pickup by Shop" severity="success"></p-tag>
+                        <p-tag *ngIf="!orders.shopPickup" value="Home Delivery" severity="success"></p-tag>
+                    </div>
+                </div>
+            </p-fieldset>
+    </p-card>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

@@ -1,0 +1,403 @@
+{
+  "version": 1,
+  "projects": {
+    "orders": {
+      "projectType": "library",
+      "root": "libs/orders",
+      "sourceRoot": "libs/orders/src",
+      "prefix": "orders",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/orders"],
+          "options": {
+            "project": "libs/orders/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/orders/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/orders/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/orders"],
+          "options": {
+            "jestConfig": "libs/orders/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/orders/src/**/*.ts",
+              "libs/orders/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "products": {
+      "projectType": "library",
+      "root": "libs/products",
+      "sourceRoot": "libs/products/src",
+      "prefix": "codereaper",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/products"],
+          "options": {
+            "jestConfig": "libs/products/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/products/src/**/*.ts",
+              "libs/products/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "sspsadmin": {
+      "projectType": "application",
+      "root": "apps/sspsadmin",
+      "sourceRoot": "apps/sspsadmin/src",
+      "prefix": "codereaper",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sspsadmin",
+            "index": "apps/sspsadmin/src/index.html",
+            "main": "apps/sspsadmin/src/main.ts",
+            "polyfills": "apps/sspsadmin/src/polyfills.ts",
+            "tsConfig": "apps/sspsadmin/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/sspsadmin/src/favicon.ico",
+              "apps/sspsadmin/src/assets"
+            ],
+            "styles": ["apps/sspsadmin/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "sspsadmin:build:production"
+            },
+            "development": {
+              "browserTarget": "sspsadmin:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sspsadmin:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/sspsadmin/src/**/*.ts",
+              "apps/sspsadmin/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sspsadmin"],
+          "options": {
+            "jestConfig": "apps/sspsadmin/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "sspsadmin-e2e": {
+      "root": "apps/sspsadmin-e2e",
+      "sourceRoot": "apps/sspsadmin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sspsadmin-e2e/cypress.json",
+            "tsConfig": "apps/sspsadmin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sspsadmin:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sspsadmin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sspsadmin-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "sspsonlinegrocery": {
+      "projectType": "application",
+      "root": "apps/sspsonlinegrocery",
+      "sourceRoot": "apps/sspsonlinegrocery/src",
+      "prefix": "codereaper",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/sspsonlinegrocery",
+            "index": "apps/sspsonlinegrocery/src/index.html",
+            "main": "apps/sspsonlinegrocery/src/main.ts",
+            "polyfills": "apps/sspsonlinegrocery/src/polyfills.ts",
+            "tsConfig": "apps/sspsonlinegrocery/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/sspsonlinegrocery/src/favicon.ico",
+              "apps/sspsonlinegrocery/src/assets"
+            ],
+            "styles": ["apps/sspsonlinegrocery/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/sspsonlinegrocery/src/environments/environment.ts",
+                  "with": "apps/sspsonlinegrocery/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "sspsonlinegrocery:build:production"
+            },
+            "development": {
+              "browserTarget": "sspsonlinegrocery:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "sspsonlinegrocery:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/sspsonlinegrocery/src/**/*.ts",
+              "apps/sspsonlinegrocery/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/sspsonlinegrocery"],
+          "options": {
+            "jestConfig": "apps/sspsonlinegrocery/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "sspsonlinegrocery-e2e": {
+      "root": "apps/sspsonlinegrocery-e2e",
+      "sourceRoot": "apps/sspsonlinegrocery-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/sspsonlinegrocery-e2e/cypress.json",
+            "tsConfig": "apps/sspsonlinegrocery-e2e/tsconfig.e2e.json",
+            "devServerTarget": "sspsonlinegrocery:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "sspsonlinegrocery:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/sspsonlinegrocery-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ui": {
+      "root": "libs/ui",
+      "sourceRoot": "libs/ui/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ui/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ui"],
+          "options": {
+            "jestConfig": "libs/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "users": {
+      "projectType": "library",
+      "root": "libs/users",
+      "sourceRoot": "libs/users/src",
+      "prefix": "users",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/users"],
+          "options": {
+            "project": "libs/users/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/users/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/users/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/users"],
+          "options": {
+            "jestConfig": "libs/users/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/users/src/**/*.ts",
+              "libs/users/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": false
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "sspsonlinegrocery"
+}

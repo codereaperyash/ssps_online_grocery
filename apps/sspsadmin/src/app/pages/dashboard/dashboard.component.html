@@ -1,0 +1,42 @@
+<div class="admin-page">
+    <p-card header="Dashboard" subheader="Milestones so far!">
+        <div class="formgrid grid">
+            <div class="field col-3">
+                <p-card styleClass="d-order">
+                    <div class="d-item">
+                        <i class="pi pi-book"></i><br>
+                        <span class="name">{{statistics[0]}}</span>
+                    </div>
+                    <span class="number">Orders</span>
+                </p-card>
+            </div>
+            <div class="field col-3">
+                <p-card styleClass="d-products">
+                    <div class="d-item">
+                        <i class="pi pi-briefcase"></i><br>
+                        <span class="name">{{statistics[1]}}</span>
+                    </div>
+                    <span class="number">Products</span>
+                </p-card>
+            </div>
+            <div class="field col-3">
+                <p-card styleClass="d-user">
+                    <div class="d-item">
+                        <i class="pi pi-user"></i><br>
+                        <span class="name">{{statistics[2]}}</span>
+                    </div>
+                    <span class="number">Users</span>
+                </p-card>
+            </div>
+            <div class="field col-3">
+                <p-card styleClass="d-sales">
+                    <div class="d-item">
+                        <i class="pi pi-book"></i><br>
+                        <span class="name">{{statistics[3] | currency:'INR '}}</span>
+                    </div>
+                    <span class="number">Total Sales</span>
+                </p-card>
+            </div>
+        </div>
+    </p-card>
+</div>

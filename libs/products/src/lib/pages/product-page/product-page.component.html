@@ -1,0 +1,35 @@
+<p-toast></p-toast>
+<div class="product-page">
+    <div class="card">
+        <div class="grid">
+            <div class="col-6">
+                <img src={{product.image}} alt="">
+            </div>
+            <div class="col-6 product-info">
+                <h3 class="name">{{product.name}}</h3>
+                <div class="rating">
+                    <p-rating [(ngModel)]="product.rating" [disabled]="true" [cancel]="false"></p-rating>
+                </div>
+                <div class="mrp" style="text-decoration: line-through;">
+                    {{product.mrp | currency: 'INR '}}
+                </div>
+                <span class="price">{{product.price | currency: 'INR '}}</span>
+                <div class="ditag">Discount:&nbsp;
+                    <p-tag value="{{((product.price/product.mrp)*100 - 100).toFixed(2)}}%" severity="success">
+                    </p-tag>
+                </div>  
+                <div class="quantity">
+                    <div class="field col-12 p-md-3 p-0">
+                        <label for="quantity">Quantity:&nbsp;</label>
+                        <p-inputNumber [(ngModel)]="quantity" mode="decimal" [showButtons]="true" inputId="quantity" [min]="1" [max]="100">
+                        </p-inputNumber>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button pButton pRipple type="button" label="Buy Now" class="p-button-rounded mr-2"></button>
+                    <button pButton pRipple type="button" label="Add to Cart" class="p-button-rounded" (click)="addToCart()"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

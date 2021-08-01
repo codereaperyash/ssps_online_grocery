@@ -1,0 +1,40 @@
+<div class="login-register">
+    <div class="login-register-panel">
+        <div class="grid">
+            <div class="col-6 col-offset-3">
+                <div>
+                    <img src='assets/logo.png' style="margin-bottom: 5%;">
+                    <h4>Welcome! Login to continue</h4>
+                </div>
+            </div>
+            <div class="col-6" style="margin-left: 25%;">
+                <form [formGroup]="loginFormGroup">
+     <!--------               <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
+                        <span *ngIf="loginForm.email.errors.required">
+                            Email is required
+                        </span>
+                        <span *ngIf="loginForm.email.errors.email">
+                            Invalid Email ID
+                        </span> 
+                    </small> ------>
+                    <div class="p-inputgroup mb-2">
+                        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <input type="text" formControlName="email" pInputText placeholder="E-Mail">       
+                    </div>  
+                    <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error">
+                        Password is requied
+                    </small>
+                    <div class="p-inputgroup mb-5">
+                        <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                        <input type="password" formControlName="password" pInputText placeholder="Password">         
+                    </div>
+                    <div>
+                        <p-button styleClass="full-btn" label="Log-In" icon="pi pi-sign-in" (onClick)="onLogin()"></p-button>
+                    </div>
+                    <br/>
+                    <small *ngIf="isSubmitted && isError" class="p-error">{{errorMessage}}</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

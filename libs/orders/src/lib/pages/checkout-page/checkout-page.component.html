@@ -1,0 +1,101 @@
+<p-toast></p-toast>
+<div class="tocart">
+    <div>
+        <p-button label="Back to Cart" (onClick)="backToCart()" icon="pi pi-arrow-left"></p-button>
+    </div>
+</div>
+<div class="grid checkout-page mt-2">
+    <div class="col-8">
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="checkoutFormGroup">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="name">Name of the User</label>
+                                <input formControlName="name" fid="name" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.name.invalid && isSubmitted" class="p-error">Name is required</small>
+                            </div>
+                            
+                            <div class="field col">
+                                <label for="email">Email of the User</label>
+                                <input formControlName="email" id="email" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.email.invalid && isSubmitted" class="p-error">
+                                    <span *ngIf="checkoutForm.email!.errors!.required!">
+                                        Email is required
+                                    </span>
+                                    <span *ngIf="checkoutForm.email!.errors!.email!">
+                                        Invalid Email ID
+                                    </span>
+                                </small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="checkoutFormGroup">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="phone">User Contact Number</label>
+                                <input formControlName="phone" fid="phone" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.phone.invalid && isSubmitted" class="p-error">Phone Number is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="country">User's Residing Country</label>
+                                <input formControlName="country" fid="country" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.country.invalid && isSubmitted" class="p-error">country is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="checkoutFormGroup">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="doorNo">Door No. / Appratment No.</label>
+                                <input formControlName="doorNo" fid="doorNo" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.doorNo.invalid && isSubmitted" class="p-error">Door Number is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="street">Street Name</label>
+                                <input formControlName="street" fid="street" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.street.invalid && isSubmitted" class="p-error">Street Name is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="locality">Locality</label>
+                                <input formControlName="locality" fid="locality" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.locality.invalid && isSubmitted" class="p-error">Locality is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="checkoutFormGroup">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="city">City</label>
+                                <input formControlName="city" fid="city" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.city.invalid && isSubmitted" class="p-error">City is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="zip">Zip Code / Postal Code / Pin Code</label>
+                                <input formControlName="zip" fid="zip" type="text" class="inputfield w-full">
+                                <small *ngIf="checkoutForm.zip.invalid && isSubmitted" class="p-error">Pincode is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <orders-order-summary></orders-order-summary>
+        <div class="checkout-button">
+            <p-button label="Place-Order" (onClick)="placeOrder()"></p-button>
+          </div>
+    </div>
+  </div>

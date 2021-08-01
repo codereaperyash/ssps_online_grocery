@@ -1,0 +1,129 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editMode? 'Update User': 'Create User'" [subheader]="editMode? 'Update the existing User' : 'Add a New User'">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <p-button label="Cancel"
+                        icon="pi pi-chevron-left"
+                        styleClass="p-button-danger"
+                        (onClick) = "onCancel()">
+                    </p-button>
+                    </div>
+                    <div class="p-toolbar-group-right">
+                        <p-button [label]="editMode? 'Update' : 'Create'"
+                        icon="pi pi-check"
+                        styleClass="p-button-success"
+                        (onClick) = "onCreate()"
+                        ></p-button>
+                    </div>
+                </p-toolbar>
+                <br>
+            </div>
+        </div> 
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="form">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="name">Name of the User</label>
+                                <input formControlName="name" fid="name" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.name.invalid && isSubmitted" class="p-error">Name is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="email">Email of the User</label>
+                                <input formControlName="email" id="email" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.email.invalid && isSubmitted" class="p-error">
+                                    <span *ngIf="userForm.email.errors.required">
+                                        Email is required
+                                    </span>
+                                    <span *ngIf="userForm.email.errors.email">
+                                        Invalid Email ID
+                                    </span>
+                                </small>
+                            </div>
+                            <div class="field col">
+                                <label for="password">Password of the User</label>
+                                <input formControlName="password" id="password" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.password.invalid && isSubmitted" class="p-error">Pass is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="form">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="phone">User Contact Number</label>
+                                <input formControlName="phone" fid="phone" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.phone.invalid && isSubmitted" class="p-error">Phone Number is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="isAdmin">Administrator Privilige:&nbsp;</label><br>
+                                <p-inputSwitch formControlName="isAdmin"></p-inputSwitch>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="form">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="doorNo">Door No. / Appratment No.</label>
+                                <input formControlName="doorNo" fid="doorNo" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.doorNo.invalid && isSubmitted" class="p-error">Door Number is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="street">Street Name</label>
+                                <input formControlName="street" fid="street" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.street.invalid && isSubmitted" class="p-error">Street Name is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="locality">Locality</label>
+                                <input formControlName="locality" fid="locality" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.locality.invalid && isSubmitted" class="p-error">Locality is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <form [formGroup]="form">
+                     <div class="formgrid grid">
+                            <div class="field col">
+                                <label for="city">City</label>
+                                <input formControlName="city" fid="city" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.city.invalid && isSubmitted" class="p-error">City is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="zip">Zip Code / Postal Code / Pin Code</label>
+                                <input formControlName="zip" fid="zip" type="text" class="inputfield w-full">
+                                <small *ngIf="userForm.zip.invalid && isSubmitted" class="p-error">Pincode is required</small>
+                            </div>
+                            <div class="field col">
+                                <label for="country">Country</label><br/>
+                                <p-dropdown 
+                                [options] ="countries"
+                                formControlName="country"
+                                optionValue="name"
+                                optionLabel="name"
+                                [filter]="true"
+                                filterBy="name"
+                                [showClear]="true"
+                                placeholder="Select your Country">
+                                </p-dropdown>
+                                <small *ngIf="userForm.country.invalid && isSubmitted" class="p-error">Country is required</small>
+                            </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text"></p-confirmDialog>

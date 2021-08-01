@@ -1,0 +1,20 @@
+<header>
+    <div class="grid">
+        <div class="col-2">
+            <div class="logo">
+                <img src="assets/sspslogo.png" alt="">
+            </div>
+        </div>
+        <div class="col-5 search">
+            <products-search></products-search>
+        </div>
+        <div class="col-3 navigator">
+            <ssps-nav></ssps-nav>
+        </div>
+        <div class="col-1 tools">     
+            <i class="pi pi-user mr-3 p-text-secondary" style="font-size: 1.5rem"></i>
+            <orders-cart-icon [routerLink] = "'/cartpage'"></orders-cart-icon>
+            <i class="pi pi-sign-out mr-3 p-text-secondary" style="font-size: 1.5rem"></i>
+        </div>
+    </div>
+</header>
