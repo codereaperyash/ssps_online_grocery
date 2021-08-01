@@ -8,6 +8,8 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build",
+    "build-admin-prod": "nx build sspsadmin --prod --output-path ../sspsadmin --base-href /sspsadmin/",
+    "build-sspsmain-prod": "nx build sspsonlinegrocery --prod --output-path ../sspsonlinegrocery --base-href /sspsonlinegrocery/",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",

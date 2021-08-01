@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @angular-eslint/component-selector */
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -47,13 +48,21 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     })
   }
   addToCart(){
-    const cartItem: CartItem = {
-      product: this.product.id,
-      quantity: this.quantity
-    };
-    this.cartService.setCartItem(cartItem);
-    this.showSuccess();
-  }
+    if(this.product.availability){
+      const cartItem: CartItem = {
+        product: this.product.id,
+        quantity: this.quantity
+      };
+      this.cartService.setCartItem(cartItem);
+      this.showSuccess();
+    }else{
+      this.showFailure();
+    }
+    }
+
+    showFailure() {
+      this.messageService.add({severity:'success', summary: 'Oops!', detail: 'Item Out of Stock'});
+    }
   showSuccess() {
     this.messageService.add({severity:'success', summary: 'Hooray!', detail: 'Item added to cart :)'});
   }
