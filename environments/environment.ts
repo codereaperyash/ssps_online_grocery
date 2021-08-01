@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    apiUrl: 'http://codereaper-backend-ssps.herokuapp.com/api/v1/'
+    apiUrl: 'https://codereaper-backend-ssps.herokuapp.com/api/v1/'
   };
   
   /*

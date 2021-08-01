@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://codereaper-backend-ssps.herokuapp.com/api/v1/'
+  apiUrl: 'https://codereaper-backend-ssps.herokuapp.com/api/v1/'
 };
